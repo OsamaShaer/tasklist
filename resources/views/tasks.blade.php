@@ -14,7 +14,7 @@
 
 
     </ul> --}}
-    <form action="/tasks" method="post">
+    {{-- <form action="/tasks" method="post">
         @csrf
             <input type="text" name="name" >
         <button type="submit"  >send</button>
@@ -22,8 +22,15 @@
         </form>
         @if(isset($name))
                 <h1>  {{$name}}  </h1>
-                @endif
+                @endif --}}
 
+<ul>
 
+    @foreach ( $tasks as $task )
+    <li><a href= "/task/{{$task->id}}">{{ $task->name }} </a></li>
+
+    @endforeach
+
+</ul>
 </body>
 </html>
