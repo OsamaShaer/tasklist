@@ -75,7 +75,9 @@ Route::get('/task/{id}', function($id) {
 
 Route::get('/', [TaskController::class,'index'])->name('task.index');
 Route::get('/task/{id}', [TaskController::class,'show']);
-Route::post('/task/store', [TaskController::class,'store'])->name('task.store');;
+Route::post('/task/store', [TaskController::class,'store'])->name('task.store');
+Route::delete('/task/destroy/{id}', [TaskController::class,'destroy'])->name('task.destroy');
+
 
 
 

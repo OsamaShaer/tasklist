@@ -31,4 +31,10 @@ return view('tasks.show', compact('task'));
             }
 
 
+
+ public function destroy($id){
+     DB::table('tasks')->where('id','=',$id)->delete();
+
+    return redirect()->back();
+ }
  }
