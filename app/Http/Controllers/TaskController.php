@@ -2,13 +2,15 @@
 namespace App\Http\Controllers;
  use Illuminate\Http\Request;
  use Illuminate\Support\Facades\DB;
+ use  App\models\Task ;
 
 
  class TaskController extends Controller{
 
 
     public function index(){
-$tasks=DB::table('tasks')->get();
+//$tasks=DB::table('tasks')->get();
+$tasks= Task::all();
 return view('tasks.index', compact('tasks'));
 
     }
@@ -20,10 +22,18 @@ return view('tasks.show', compact('task'));
 
     }
     public function store(Request $request){
-        $task = DB::table('tasks')->insert([
-'name'=>$request->name
+   //     $task = DB::table('tasks')->insert([
+//'name'=>$request->name
+$validated = $request->validate([
 
-        ]);
+    'name' => 'required|min:4|max:30',
+]);
+
+$task=new Task();
+$task->name=$request->name;
+$task->save();
+
+
         return redirect()->back();
 
 
@@ -33,8 +43,8 @@ return view('tasks.show', compact('task'));
 
 
  public function destroy($id){
-     DB::table('tasks')->where('id','=',$id)->delete();
-
+   //  DB::table('tasks')->where('id','=',$id)->delete();
+Task::find($id)->delete();
     return redirect()->back();
  }
  }

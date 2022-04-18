@@ -12,6 +12,15 @@
             <div class="panel-body">
                 <!-- Display Validation Errors -->
                 <!-- New Task Form -->
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                 <form action="/task/store" method="POST" class="form-horizontal">
                     @csrf
 
@@ -20,7 +29,7 @@
                         <label for="task-name" class="col-sm-3 control-label">Task</label>
 
                         <div class="col-sm-6">
-                            <input type="text" name="name" id="task-name" class="form-control" value="">
+                            <input type="text" name="name" id="task-name" class="form-control" value="" >
                         </div>
                     </div>
 

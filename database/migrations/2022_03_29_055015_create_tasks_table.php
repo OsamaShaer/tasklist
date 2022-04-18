@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->integer('task_id')->uniqid()->incrementing();
             $table->string('name');
             $table->text('describthion')->nullable();
 
